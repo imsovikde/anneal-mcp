@@ -1,0 +1,35 @@
+name: Bug Report
+description: Report an issue connecting or executing tools with Anneal MCP
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping improve the Anneal MCP connector.
+  - type: dropdown
+    id: client
+    attributes:
+      label: AI Client / Runtime
+      description: Which client encountered the issue?
+      options:
+        - Claude.ai (Web)
+        - Claude Desktop
+        - OpenAI ChatGPT (Connected App)
+        - Google Gemini (CLI / Spark)
+        - Cursor / Windsurf
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Problem Description
+      description: What happened, and what did you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: error_output
+    attributes:
+      label: Error Logs or Terminal Output
+      description: Copy exact JSON-RPC error codes or HTTP responses.
+      render: shell

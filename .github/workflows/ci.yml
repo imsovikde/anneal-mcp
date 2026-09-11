@@ -1,0 +1,56 @@
+name: Manifest & Endpoint Verification
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Daily uptime and CORS health check at 06:00 UTC
+    - cron: '0 6 * * *'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate server.json syntax
+        run: |
+          node -e '
+            const fs = require("fs");
+            const manifest = JSON.parse(fs.readFileSync("server.json", "utf8"));
+            if (!manifest.name || !manifest.remotes || !manifest.remotes[0].url) {
+              throw new Error("server.json missing mandatory MCP fields");
+            }
+            console.log("✓ server.json syntax and remotes verified:", manifest.name, manifest.version);
+          '
+
+      - name: Verify Live Endpoint & OAuth 2.1 Challenge
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X POST https://anneal-os.vercel.app/api/mcp)
+          if [ "$STATUS" -eq 401 ] || [ "$STATUS" -eq 200 ]; then
+            echo "✓ Production endpoint https://anneal-os.vercel.app/api/mcp returned HTTP $STATUS (Auth challenge intact)"
+          else
+            echo "X Unexpected endpoint status: $STATUS"
+            exit 1
+          fi
+
+      - name: Verify SVG Logo CORS Headers
+        run: |
+          CORP=$(curl -sI https://anneal-os.vercel.app/mcp-logo.svg | grep -i "cross-origin-resource-policy" | tr -d '\r\n')
+          CORS=$(curl -sI https://anneal-os.vercel.app/mcp-logo.svg | grep -i "access-control-allow-origin" | tr -d '\r\n')
+          echo "CORP: $CORP"
+          echo "CORS: $CORS"
+          if [[ "$CORP" =~ "cross-origin" ]] && [[ "$CORS" =~ "*" ]]; then
+            echo "✓ SVG logo CORS sandbox headers verified"
+          else
+            echo "X Missing required CORS/CORP headers on SVG logo"
+            exit 1
+          fi

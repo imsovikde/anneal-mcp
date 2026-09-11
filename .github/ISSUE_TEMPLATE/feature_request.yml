@@ -1,0 +1,21 @@
+name: Feature Request / New Tool Proposal
+description: Suggest a new MCP tool or integration capability for Anneal
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: Propose new tool signatures or workflow integrations for Anneal MCP.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Use Case / Context
+      description: What AI agent workflow does this enable?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Tool Signature
+      description: Proposed tool name, input parameters, and output format.
+      render: json
