@@ -1,0 +1,27 @@
+{
+  "name": "@anneal/mcp",
+  "version": "1.2.6",
+  "description": "Official Model Context Protocol (MCP) connector for Anneal personal operating system.",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "chatgpt",
+    "gemini",
+    "cursor",
+    "personal-os",
+    "habits",
+    "tasks",
+    "fsrs",
+    "spaced-repetition"
+  ],
+  "homepage": "https://anneal-os.vercel.app",
+  "bugs": {
+    "url": "https://github.com/imsovikde/anneal-mcp/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imsovikde/anneal-mcp.git"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/registry/main/schema/server.json",
+  "name": "anneal",
+  "title": "Anneal",
+  "description": "Official Model Context Protocol (MCP) server for Anneal — habits, tasks, and FSRS-5 study retention personal operating system.",
+  "version": "1.2.6",
+  "websiteUrl": "https://anneal-os.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imsovikde/anneal-mcp"
+  },
+  "icons": [
+    {
+      "src": "https://anneal-os.vercel.app/mcp-logo.svg",
+      "mimeType": "image/svg+xml",
+      "sizes": ["any"]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://anneal-os.vercel.app/api/mcp"
+    }
+  ]
+}

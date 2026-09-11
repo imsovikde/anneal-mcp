@@ -1,0 +1,11 @@
+{
+  "name": "anneal",
+  "version": "1.2.6",
+  "description": "Anneal MCP connector for habits, tasks, and study retention.",
+  "mcpServers": {
+    "anneal": {
+      "url": "https://anneal-os.vercel.app/api/mcp",
+      "transport": "streamable-http"
+    }
+  }
+}

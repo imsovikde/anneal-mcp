@@ -1,0 +1,8 @@
+startCommand:
+  type: http
+  config:
+    url: "https://anneal-os.vercel.app/api/mcp"
+metadata:
+  name: "anneal"
+  description: "Official Model Context Protocol (MCP) server for Anneal personal operating system."
+  iconUrl: "https://anneal-os.vercel.app/mcp-logo.svg"
