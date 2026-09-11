@@ -3,3 +3,7 @@ mcp-publisher.exe
 .env
 .DS_Store
 
+*.ps1
+smithery-patch*.json
+test-tools-patch.json
+
