@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "anneal",
+  "displayName": "Anneal",
+  "title": "Anneal",
+  "description": "Zero-friction personal operating system: habits, tasks, and FSRS-5 study retention via remote MCP.",
+  "version": "1.2.6",
+  "homepage": "https://anneal-os.vercel.app",
+  "websiteUrl": "https://anneal-os.vercel.app",
+  "icon": "https://anneal-os.vercel.app/mcp-logo.svg",
+  "iconUrl": "https://anneal-os.vercel.app/mcp-logo.svg",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://anneal-os.vercel.app/api/mcp"
+    }
+  ]
+}

@@ -1,8 +1,33 @@
+name: "anneal"
+displayName: "Anneal"
+description: "Zero-friction personal operating system: habits, tasks, and FSRS-5 study retention via remote MCP."
+homepage: "https://anneal-os.vercel.app"
+websiteUrl: "https://anneal-os.vercel.app"
+icon: "https://anneal-os.vercel.app/mcp-logo.svg"
+iconUrl: "https://anneal-os.vercel.app/mcp-logo.svg"
+
 startCommand:
   type: http
   config:
     url: "https://anneal-os.vercel.app/api/mcp"
+
 metadata:
   name: "anneal"
-  description: "Official Model Context Protocol (MCP) server for Anneal personal operating system."
+  displayName: "Anneal"
+  title: "Anneal"
+  description: "Zero-friction personal operating system: habits, tasks, and FSRS-5 study retention via remote MCP."
+  homepage: "https://anneal-os.vercel.app"
+  websiteUrl: "https://anneal-os.vercel.app"
+  icon: "https://anneal-os.vercel.app/mcp-logo.svg"
   iconUrl: "https://anneal-os.vercel.app/mcp-logo.svg"
+  tags:
+    - "habits"
+    - "tasks"
+    - "fsrs-5"
+    - "study-retention"
+    - "spaced-repetition"
+    - "personal-os"
+  categories:
+    - "Productivity"
+    - "Personal OS"
+    - "Education"
