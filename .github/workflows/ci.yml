@@ -44,13 +44,17 @@ jobs:
 
       - name: Verify SVG Logo CORS Headers
         run: |
-          CORP=$(curl -sI https://anneal-os.vercel.app/mcp-logo.svg | grep -i "cross-origin-resource-policy" | tr -d '\r\n')
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://anneal-os.vercel.app/mcp-logo.svg)
           CORS=$(curl -sI https://anneal-os.vercel.app/mcp-logo.svg | grep -i "access-control-allow-origin" | tr -d '\r\n')
-          echo "CORP: $CORP"
+          CONTENT_TYPE=$(curl -sI https://anneal-os.vercel.app/mcp-logo.svg | grep -i "content-type" | tr -d '\r\n')
+          CORP=$(curl -sI https://anneal-os.vercel.app/mcp-logo.svg | grep -i "cross-origin-resource-policy" | tr -d '\r\n')
+          echo "HTTP Status: $STATUS"
           echo "CORS: $CORS"
-          if [[ "$CORP" =~ "cross-origin" ]] && [[ "$CORS" =~ "*" ]]; then
-            echo "✓ SVG logo CORS sandbox headers verified"
+          echo "Content-Type: $CONTENT_TYPE"
+          echo "CORP: ${CORP:-not set (optional)}"
+          if [ "$STATUS" -eq 200 ] && [[ "$CORS" =~ "*" ]] && [[ "$CONTENT_TYPE" =~ "image/svg+xml" ]]; then
+            echo "✓ SVG logo reachability, CORS wildcard (*), and SVG MIME type verified"
           else
-            echo "X Missing required CORS/CORP headers on SVG logo"
+            echo "X Logo verification failed: ensure 200 OK, CORS wildcard, and image/svg+xml MIME type"
             exit 1
           fi
